@@ -47,33 +47,23 @@ class GitarooPause extends MusicBeatState
 
 		changeThing();
 
-                #if android
-	        addVirtualPad(LEFT_RIGHT, A);
-                #end
-
 		super.create();
 	}
 
 	override function update(elapsed:Float)
 	{
-		if (controls.UI_LEFT_P || controls.UI_RIGHT_P)
+		if (controls.LEFT_P || controls.RIGHT_P)
 			changeThing();
 
 		if (controls.ACCEPT)
 		{
 			if (replaySelect)
 			{
-				MusicBeatState.switchState(new PlayState());
+				FlxG.switchState(new PlayState());
 			}
 			else
 			{
-				PlayState.usedPractice = false;
-				PlayState.changedDifficulty = false;
-				PlayState.seenCutscene = false;
-				PlayState.deathCounter = 0;
-				PlayState.cpuControlled = false;
-				MusicBeatState.switchState(new MainMenuState());
-				FlxG.sound.playMusic(Paths.music('freakyMenu'));
+				FlxG.switchState(new MainMenuState());
 			}
 		}
 
